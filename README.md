@@ -2,9 +2,26 @@
 
 A local, interactive blue-hour free throw: an editable Blender athlete and court, a Three.js viewer, and an explicit gravity-based ball simulation. No footage, accounts, API keys, or network services are needed to play after installing dependencies.
 
-![After Rain courtside view](deliverables/stills/01-courtside.png)
+[![Watch the After Rain cinematic demo — courtside view](deliverables/stills/01-courtside.png)](deliverables/After-Rain.mp4)
 
 This is a synthetic demonstration with authored movement and hypothetical launch conditions. It does **not** reconstruct Ryan's shot, validate biomechanics, or provide coaching advice.
+
+## Watch the shot
+
+[**Play the full cinematic demo — 20 seconds, 1080p**](deliverables/After-Rain.mp4). Three complete takes show the same shot from courtside, the shooting side, and the front. All takes run at normal speed.
+
+The looping previews below play inline. Click either preview for its six-second, 720p MP4 with audio; if GitHub shows a file page, use **View raw** or **Download raw file** to open it.
+
+| Shooting side | Front angle |
+| --- | --- |
+| [![Side-view animation: gather, set, release and follow-through](deliverables/previews/shooting-side.gif)](deliverables/previews/shooting-side.mp4) | [![Front-view animation: right-hand shot and left guide withdrawal](deliverables/previews/front-angle.gif)](deliverables/previews/front-angle.mp4) |
+| [Play side-view video](deliverables/previews/shooting-side.mp4) · elbow lift and wrist finish | [Play front-view video](deliverables/previews/front-angle.mp4) · hand alignment and guide withdrawal |
+
+### Release and basket details
+
+| Three-quarter release | Basket close-up |
+| --- | --- |
+| ![Three-quarter view of the release](deliverables/stills/02-the-release.png) | ![Close-up of the ball reaching the rim](deliverables/stills/03-the-basket.png) |
 
 ## Open and play
 
@@ -68,6 +85,8 @@ python3 -m venv .venv
 Blender 5.2.1 LTS with Cycles Metal was used. Three.js adds the browser's wet-ground reflections, atmospheric grading, ambient occlusion and gentle foliage motion; its rendering is not pixel-identical to Cycles. `scripts/build_scene.py` generates editable assets and animation; `public/physics.js` is the shared flight model; `public/app.js` coordinates interaction, hand adaptation and rendering.
 
 With the server running, `npm test` checks physics and dimensions; `npm run verify -- --headed` checks the viewer. `node scripts/benchmark.mjs` measures this machine. `node scripts/render_demo.mjs` regenerates the film and stills using Chrome and the project-local Python/FFmpeg dependencies. Shut down other render jobs before benchmarking.
+
+After updating the film, `node scripts/make-readme-media.mjs` extracts the two angle clips and lightweight looping README previews. It reuses the film without rendering the 3D scene again.
 
 For the focused joint-limit regression only, run `node scripts/verify-anatomy.mjs` with Chrome installed and the server running. It checks the exported clip and the launch-edit window, and saves diagnostic images locally. It does not run the benchmark or the full UI suite.
 
