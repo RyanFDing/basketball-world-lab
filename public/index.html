@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#091419" />
+    <title>After Rain — A Free Throw Study</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/node_modules/three/build/three.module.js",
+          "three/addons/": "/node_modules/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="viewport"></div>
+    <div id="vignette"></div>
+    <div id="loading">
+      <span class="eyebrow">BASKETBALL WORLD LAB</span>
+      <h1>After Rain<span>.</span></h1>
+      <p id="load-message">Preparing the court…</p>
+      <div class="loadline"></div>
+    </div>
+    <header class="ui">
+      <a class="brand" href="/"
+        >AFTER RAIN<span class="brand-dot"></span
+        ><small>A FREE THROW STUDY</small></a
+      >
+      <div class="top-right">
+        <span id="fps">LOCAL / 3D</span
+        ><button id="presentation" title="Presentation mode (H)">
+          Presentation <span>↗</span>
+        </button>
+      </div>
+    </header>
+    <section class="intro ui">
+      <span class="eyebrow">01 / BLUE HOUR COURT</span>
+      <h1>One quiet<br />moment.</h1>
+      <p>
+        A synthetic athlete. An authored shot.<br />A little space to explore
+        the flight.
+      </p>
+    </section>
+    <aside class="settings ui" id="settings">
+      <div class="panel-head">
+        <span class="eyebrow">VIRTUAL LAUNCH</span
+        ><button id="collapse" aria-label="Toggle launch controls">−</button>
+      </div>
+      <div id="fields">
+        <label for="speed"
+          >Speed
+          <output id="speed-value">6.94 <small>m/s</small></output></label
+        ><input
+          type="range"
+          id="speed"
+          min="5.5"
+          max="8.5"
+          step="0.01"
+          value="6.94"
+        />
+        <label for="angle"
+          >Elevation
+          <output id="angle-value">52.0<small>°</small></output></label
+        ><input
+          type="range"
+          id="angle"
+          min="38"
+          max="68"
+          step="0.1"
+          value="52"
+        />
+        <label for="direction"
+          >Direction
+          <output id="direction-value">+1.72<small>°</small></output></label
+        ><input
+          type="range"
+          id="direction"
+          min="-12"
+          max="12"
+          step="0.01"
+          value="1.72"
+        />
+        <div class="panel-row">
+          <label class="check"
+            ><input type="checkbox" id="trajectory" /> Show trajectory</label
+          ><button id="reset" title="Restore default shot">Reset</button>
+        </div>
+        <div class="result">
+          <span>SIMULATED OUTCOME</span
+          ><strong id="outcome">Ready to release</strong>
+        </div>
+        <div class="panel-row file-row">
+          <button id="save">Save shot</button
+          ><button id="open">Open shot</button
+          ><input
+            type="file"
+            id="file"
+            accept="application/json,.json"
+            hidden
+          />
+        </div>
+      </div>
+    </aside>
+    <div class="camera-switch ui" role="group" aria-label="Camera">
+      <button class="active" data-camera="cinematic">Cinematic</button
+      ><button data-camera="orbit">Orbit</button
+      ><button data-camera="side">Side</button
+      ><button data-camera="front">Front</button>
+    </div>
+    <footer class="ui">
+      <div class="timeline-head">
+        <div>
+          <span class="live-dot"></span><span id="phase">SETTLE</span
+          ><span class="divider">/</span><span id="time">00.00</span
+          ><span class="time-total"> / 06.00 s</span>
+        </div>
+        <span class="hint" id="camera-hint">SPACE play · H hide interface</span>
+      </div>
+      <div class="scrubber">
+        <input
+          id="timeline"
+          aria-label="Shot timeline"
+          type="range"
+          min="0"
+          max="6"
+          step="0.001"
+          value="0"
+        />
+        <div class="release-mark" title="Right-hand release at 1.25 seconds"></div>
+      </div>
+      <div class="transport">
+        <div class="transport-left">
+          <button id="play" class="primary" aria-label="Play shot">
+            <span id="play-icon">▶</span
+            ><span id="play-text">Play shot</span></button
+          ><button id="restart" title="Restart (R)">
+            ↺ <span>Restart</span>
+          </button>
+          <div class="speed-switch" role="group" aria-label="Playback speed">
+            <button data-rate="0.25">¼×</button
+            ><button data-rate="0.5">½×</button
+            ><button data-rate="1" class="active">1×</button>
+          </div>
+        </div>
+        <div class="caption">
+          Authored animation · hypothetical physics
+          <button id="about" aria-label="About this demonstration">ⓘ</button>
+        </div>
+      </div>
+    </footer>
+    <div id="present-hint">H to restore controls</div>
+    <div id="toast" role="status"></div>
+    <dialog id="info">
+      <button id="close-info" aria-label="Close">×</button
+      ><span class="eyebrow">ABOUT THIS STUDY</span>
+      <h2>A virtual free throw.</h2>
+      <p>
+        This is a synthetic athlete with an authored animation. It does not
+        reconstruct your shooting technique, validate biomechanics, or provide
+        coaching advice.
+      </p>
+      <p>
+        Flight uses gravity at 9.81 m/s². Rim, finite backboard, support pad,
+        and floor contacts use an approximate sphere collision model. The net
+        response is cosmetic and does not affect the ball.
+      </p>
+      <p>
+        The ball is 0.238 m across; the upper rim surface is 3.048 m high with a
+        0.4572 m clear opening. Changing launch conditions preserves the release
+        position; the body animation remains authored.
+      </p>
+      <p class="muted">
+        Drag in Orbit mode to rotate, scroll to zoom, right-drag to pan. Space
+        plays, R restarts, H toggles presentation, Esc exits presentation.
+        Launch settings are saved in this browser. Save/Open transfers them as
+        JSON.
+      </p>
+    </dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

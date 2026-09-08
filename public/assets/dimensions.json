@@ -1,0 +1,29 @@
+{
+  "units": "metres",
+  "athleteHeight": 1.9,
+  "courtWidth": 15.24,
+  "courtLength": 28.6512,
+  "rimHeight": 3.048,
+  "rimHeightReference": "upper surface of steel",
+  "rimInsideDiameter": 0.4572,
+  "rimTubeRadius": 0.009525,
+  "rimCenter": [
+    0,
+    3.038475,
+    4.191
+  ],
+  "boardFrontZ": 4.572,
+  "boardWidth": 1.8288,
+  "boardHeight": 1.0668,
+  "ballRadius": 0.119,
+  "freeThrowLineZ": 0,
+  "releaseTime": 1.25,
+  "releasePosition": [
+    -0.12,
+    2.22,
+    0.19
+  ],
+  "gravity": 9.81,
+  "bodySourceVertices": 13380,
+  "bones": 163
+}

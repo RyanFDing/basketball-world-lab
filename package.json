@@ -1,0 +1,13 @@
+{
+  "name": "after-rain-basketball-world",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/physics.test.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": { "three": "0.185.0" },
+  "devDependencies": { "playwright": "1.58.2" }
+}
